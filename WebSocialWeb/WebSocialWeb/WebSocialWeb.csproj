@@ -181,7 +181,11 @@
       <DependentUpon>201907171536130_tblsHobbAreaGen.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Contexts\SocialContext.cs" />
+    <Compile Include="Models\Friendship.cs" />
+    <Compile Include="Models\Gender.cs" />
+    <Compile Include="Models\Hobby.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
