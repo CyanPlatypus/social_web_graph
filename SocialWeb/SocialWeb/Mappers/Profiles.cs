@@ -23,6 +23,8 @@ namespace WebSocialWeb.Mappers
                         Patronymic = f.Friend.Patronymic
                     })));
 
+            CreateMap<UserDto, User>();
+
             CreateMap<User, UserNodeDto>()
                 .ForMember(uDto => uDto.Friends, a => a.MapFrom(u => u.Friends.Select(f => f.FriendId)));
         }

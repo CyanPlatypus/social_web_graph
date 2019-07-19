@@ -13,8 +13,9 @@ namespace SocialWeb.Services
         private readonly UserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public UserService(UserRepository userRepository,
-            IMapper mapper)
+        public UserService(UserRepository userRepository
+            , IMapper mapper
+            )
         {
             _userRepository = userRepository;
             _mapper = mapper;

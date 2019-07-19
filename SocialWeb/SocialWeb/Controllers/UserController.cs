@@ -8,10 +8,11 @@ using SocialWeb.Services;
 
 namespace SocialWeb.Controllers
 {
-    [Route("api/users")]
+    [RoutePrefix("api/users")]
     public class UserController : ApiController
     {
         private readonly UserService _userService;
+        
         public UserController(UserService userService)
         {
             _userService = userService;
@@ -23,6 +24,7 @@ namespace SocialWeb.Controllers
             return Ok(_userService.Get(id));
         }
 
+        [Route("")]
         public IHttpActionResult GetAll()
         {
             return Ok(_userService.GetAll());
