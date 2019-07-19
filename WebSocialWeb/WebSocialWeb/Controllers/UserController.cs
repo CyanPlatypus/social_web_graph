@@ -1,10 +1,14 @@
-﻿using System.Web.Http;
-using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using WebSocialWeb.Services;
 
 namespace WebSocialWeb.Controllers
 {
-    [System.Web.Mvc.Route("api/users")]
+    [Route("api/users")]
     public class UserController : ApiController
     {
         private readonly UserService _userService;
@@ -13,7 +17,7 @@ namespace WebSocialWeb.Controllers
             _userService = userService;
         }
 
-        [System.Web.Mvc.Route("{id}")]
+        [Route("{id}")]
         public IHttpActionResult Get(int id)
         {
             return Ok(_userService.Get(id));
