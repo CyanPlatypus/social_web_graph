@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="SocialClient.Views.UserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SocialClient.Views"
+             xmlns:viewModels="clr-namespace:SocialClient.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock FontWeight="Bold" FontSize="14">
+            <Run Text="{Binding CurrentUser.Name}" />
+            <Run Text=" " />
+            <Run Text="{Binding CurrentUser.Surname}" />
+            <Run Text=" " />
+            <Run Text="{Binding CurrentUser.Patronymic}" />
+        </TextBlock>
+        <Label>Date of birth:</Label>
+        <TextBlock Text="{Binding CurrentUser.DateOfBirth, StringFormat=dd.MM.yyyy}"></TextBlock>
+        <Label>Gender:</Label>
+        <TextBlock Text="{Binding CurrentUser.Gender}"></TextBlock>
+        <Label>Place of birth:</Label>
+        <TextBlock Text="{Binding CurrentUser.PlaceOfBirth}"></TextBlock>
+        <Label>Place of residence:</Label>
+        <TextBlock Text="{Binding CurrentUser.Residence}"></TextBlock>
+        
+        <Label>Hobbies:</Label>
+        <ListBox ItemsSource="{Binding CurrentUser.Hobbies}" BorderThickness="0"></ListBox>
+        <!--<ItemsControl ItemsSource="{Binding CurrentUser.Hobbies}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>-->
+
+        <Label>Friends:</Label>
+        <ListBox ItemsSource="{Binding CurrentUser.Friends}" BorderThickness="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <Run Text="{Binding Path=Name}" />
+                        <Run Text=" " />
+                        <Run Text="{Binding Path=Surname}" />
+                        <Run Text=" " />
+                        <Run Text="{Binding Path=Patronymic}" />
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </StackPanel>
+</UserControl>
