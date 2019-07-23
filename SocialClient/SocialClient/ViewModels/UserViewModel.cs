@@ -15,27 +15,34 @@ namespace SocialClient.ViewModels
 {
     public class UserViewModel: INotifyPropertyChanged
     {
-        public NotifyTaskExecution<UserDto> NotifyTaskExecution;
-        //private UserDto currentUser;
+        public NotifyTaskExecution<UserDto> NotifyTaskExecution { get; protected set; }
 
         public UserDto CurrentUser => NotifyTaskExecution.Result;
 
-        public GetUserCommand ChangeUserCommand { get; set; }
+        public RelayCommand ChangeUserCommand { get; protected set; }
 
         public UserViewModel(int id)
         {
-            NotifyTaskExecution = new NotifyTaskExecution<UserDto>(UserService.GetUserAsync(id));
+            NotifyTaskExecution = new NotifyTaskExecution<UserDto>();
             NotifyTaskExecution.PropertyChanged += NotifyTaskExecution_PropertyChanged;
-            this.ChangeUserCommand = new GetUserCommand(o =>
+            
+            this.ChangeUserCommand = new RelayCommand(o =>
             {
                 if(o is UserInfoDto user)
-                    this.NotifyTaskExecution.SetTask(UserService.GetUserAsync(user.Id));
+                    GetUser(user.Id);
             });
+
+            GetUser(id);
         }
-        
+
+        private void GetUser(int id)
+        {
+            NotifyTaskExecution.StartTask(UserService.GetUserAsync(id));
+        }
+
         private void NotifyTaskExecution_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            //if (e.PropertyName == nameof(NotifyTaskExecution.Result))
+            if (e.PropertyName == nameof(NotifyTaskExecution.Result))
                 OnPropertyChanged(nameof(CurrentUser));
         }
 

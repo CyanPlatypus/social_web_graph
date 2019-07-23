@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace SocialClient.Commands
 {
-    public class GetUserCommand: ICommand
+    public class RelayCommand: ICommand
     {
         private Action<object> execute;
         private Func<object, bool> canExecute;
@@ -14,7 +14,7 @@ namespace SocialClient.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public GetUserCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
         {
             this.execute = execute;
             this.canExecute = canExecute;

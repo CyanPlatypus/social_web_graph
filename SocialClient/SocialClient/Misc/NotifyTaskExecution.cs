@@ -16,12 +16,14 @@ namespace SocialClient.Misc
         public bool IsFailed => _task?.IsFaulted ?? false;
         public T Result => _task?.Status == TaskStatus.RanToCompletion? _task.Result : default(T);
 
+        public NotifyTaskExecution(){}
+
         public NotifyTaskExecution(Task<T> task)
         {
-            SetTask(task);
+            StartTask(task);
         }
 
-        public void SetTask(Task<T> task)
+        public void StartTask(Task<T> task)
         {
             _task = task;
             if (!_task.IsCompleted)
