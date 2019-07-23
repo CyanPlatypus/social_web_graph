@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <views:UserView></views:UserView>
+        <!--<views:UserView></views:UserView>-->
+        <views:GraphView></views:GraphView>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,6 +23,18 @@ namespace SocialClient.Services
                 if (response.IsSuccessStatusCode)
                     user = await response.Content.ReadAsAsync<UserDto>();
                 return user;
+            }
+        }
+
+        public static async Task<List<UserNodeDto>> GetUsersAsync()
+        {
+            List<UserNodeDto> users = null;
+
+            using (var responce = await _client.GetAsync(domain).ConfigureAwait(false))
+            {
+                if (responce.IsSuccessStatusCode)
+                    users = await responce.Content.ReadAsAsync<List<UserNodeDto>>();
+                return users;
             }
         }
     }
