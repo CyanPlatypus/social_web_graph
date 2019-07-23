@@ -7,6 +7,7 @@ using Dtos;
 
 namespace SocialClient.Services
 {
+    //todo make not static
     public class UserService
     {
         private const string domain = @"http://localhost:55050/api/users";

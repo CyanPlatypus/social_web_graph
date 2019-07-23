@@ -31,5 +31,13 @@ namespace SocialClient.Views
 
             InitializeComponent();
         }
+
+        public UserView(int id)
+        {
+            _userViewModel = new UserViewModel(id);
+            this.DataContext = _userViewModel;
+
+            InitializeComponent();
+        }
     }
 }

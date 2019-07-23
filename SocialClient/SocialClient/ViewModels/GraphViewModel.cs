@@ -1,18 +1,23 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Dtos;
 using QuickGraph;
 using SocialClient.Annotations;
+using SocialClient.Commands;
+using SocialClient.Misc;
 using SocialClient.Services;
 
 namespace SocialClient.ViewModels
 {
     public class GraphViewModel: INotifyPropertyChanged
     {
+        public NotifyTaskExecution<List<UserNodeDto>> NotifyTaskExecution { get; protected set; }
+
+        public RelayCommand ShowUserInfo { get; protected set; }
+
         private BidirectionalGraph<object, IEdge<object>> _myGraph;
-        private string _name;
 
         public BidirectionalGraph<object, IEdge<object>> MyGraph
         {
@@ -24,45 +29,29 @@ namespace SocialClient.ViewModels
             }
         }
 
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                _name = value;
-                OnPropertyChanged();
-            }
-        }
-
         public GraphViewModel()
         {
-            var _= NewMethod();
+            NotifyTaskExecution = new NotifyTaskExecution<List<UserNodeDto>>();
+            NotifyTaskExecution.PropertyChanged += NotifyTaskExecution_PropertyChanged;
+            ShowUserInfo = new RelayCommand(obj =>
+            {
+                if (obj is UserNodeDto un)
+                    WindowService.ShowUser(un.Id);
+            });
+            UpdateGraph();
         }
 
-        private async Task NewMethod()
+        protected void UpdateGraph()
         {
-            var result = await UserService.GetUsersAsync();
-            var g = new BidirectionalGraph<object, IEdge<object>>();
-            //UndirectedGraph
-            var userDict = result.ToDictionary(k => k.Id, e => e);
-            g.AddVertexRange(result);
-            result.ForEach(ug =>
+            NotifyTaskExecution.StartTask(UserService.GetUsersAsync());
+        }
+
+        private void NotifyTaskExecution_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(NotifyTaskExecution.Result))
             {
-                foreach (var friendId in ug.Friends)
-                {
-                    g.AddEdge(new Edge<object>(userDict[ug.Id], userDict[friendId]));
-                }
-            });
-
-            //var a = "a";
-            //var b = "b";
-            //g.AddVertex(a);
-            //g.AddVertex(b);
-            //g.AddEdge(new Edge<object>(a, b));
-
-            MyGraph = g;
-
-            Name = "Finished";
+                MyGraph = BuildGraph(NotifyTaskExecution.Result);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -71,6 +60,24 @@ namespace SocialClient.ViewModels
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private BidirectionalGraph<object, IEdge<object>> BuildGraph(ICollection<UserNodeDto> users)
+        {
+            var g = new BidirectionalGraph<object, IEdge<object>>();
+            //UndirectedGraph
+            var userDict = users.ToDictionary(k => k.Id, e => e);
+            g.AddVertexRange(users);
+
+            foreach (var ug in users)
+            {
+                foreach (var friendId in ug.Friends)
+                {
+                    g.AddEdge(new Edge<object>(userDict[ug.Id], userDict[friendId]));
+                }
+            }
+
+            return g;
         }
     }
 }

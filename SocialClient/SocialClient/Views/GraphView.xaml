@@ -12,13 +12,19 @@
 
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type dtos:UserNodeDto}">
-            <TextBlock FontWeight="Bold" FontSize="18">
-                <Run Text="{Binding Path=Id}" />
-                <Run Text=" " />
-                <Run Text="{Binding Path=Name}" />
-                <Run Text=" " />
-                <Run Text="{Binding Path=Surname}" />
-            </TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock FontWeight="Bold" FontSize="18">
+                    <Run Text="{Binding Path=Id}" />
+                    <Run Text=" " />
+                    <Run Text="{Binding Path=Name}" />
+                    <Run Text=" " />
+                    <Run Text="{Binding Path=Surname}" />
+                </TextBlock>
+                <Button Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type graphsharp:GraphLayout}}, Path=DataContext.ShowUserInfo}" CommandParameter="{Binding}" >
+                Info
+                </Button>
+            </StackPanel>
+
         </DataTemplate>
 
         <Style TargetType="{x:Type graphsharp:VertexControl}">
@@ -36,8 +42,8 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="Purple">
-        <controls:ZoomControl Mode="Original" >
+    <Grid>
+        <controls:ZoomControl>
             <!--FR, ISOM-->
             <graphsharp:GraphLayout Graph="{Binding MyGraph}"  LayoutAlgorithmType="FR"
                                     OverlapRemovalAlgorithmType="FSA" />
