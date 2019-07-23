@@ -31,18 +31,15 @@ namespace SocialWeb
             builder.Register(c => new MapperConfiguration(cfg =>cfg.AddProfile(c.Resolve<Profiles>()))).AsSelf().SingleInstance();
             builder.Register(c => c.Resolve<MapperConfiguration>().CreateMapper(c.Resolve)).As<IMapper>().InstancePerLifetimeScope();
 
-            builder.RegisterType<UserService>().InstancePerRequest();
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SocialContext, Migrations.Configuration>(useSuppliedContext: true));
+            builder.RegisterType<SocialContext>().InstancePerRequest();
             builder.RegisterType<UserRepository>().InstancePerRequest();
-            builder.RegisterType<SocialContext>().As<DbContext>().InstancePerRequest();
-
-            // OPTIONAL: Register the Autofac filter provider.
-            //builder.RegisterWebApiFilterProvider(config);
-
-            // OPTIONAL: Register the Autofac model binder provider.
-            //builder.RegisterWebApiModelBinderProvider();
+            builder.RegisterType<UserService>().InstancePerRequest();
             
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
+            //GlobalConfiguration.Configuration.Filters.Add(new CustomExceptionFilterAttribute());
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
