@@ -11,10 +11,10 @@ namespace SocialClient.ViewModels
 {
     public class GraphViewModel: INotifyPropertyChanged
     {
-        private BidirectionalGraph<UserNodeDto, IEdge<UserNodeDto>> _myGraph;
+        private BidirectionalGraph<object, IEdge<object>> _myGraph;
         private string _name;
 
-        public BidirectionalGraph<UserNodeDto, IEdge<UserNodeDto>> MyGraph
+        public BidirectionalGraph<object, IEdge<object>> MyGraph
         {
             get => _myGraph;
             set
@@ -42,20 +42,23 @@ namespace SocialClient.ViewModels
         private async Task NewMethod()
         {
             var result = await UserService.GetUsersAsync();
-
-            var g = new BidirectionalGraph<UserNodeDto, IEdge<UserNodeDto>>();
-
+            var g = new BidirectionalGraph<object, IEdge<object>>();
+            //UndirectedGraph
             var userDict = result.ToDictionary(k => k.Id, e => e);
-
             g.AddVertexRange(result);
-
             result.ForEach(ug =>
             {
                 foreach (var friendId in ug.Friends)
                 {
-                    g.AddEdge(new Edge<UserNodeDto>(userDict[ug.Id], userDict[friendId]));
+                    g.AddEdge(new Edge<object>(userDict[ug.Id], userDict[friendId]));
                 }
             });
+
+            //var a = "a";
+            //var b = "b";
+            //g.AddVertex(a);
+            //g.AddVertex(b);
+            //g.AddEdge(new Edge<object>(a, b));
 
             MyGraph = g;
 

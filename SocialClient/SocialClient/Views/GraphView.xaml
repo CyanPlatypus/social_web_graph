@@ -6,23 +6,41 @@
              xmlns:graphsharp="clr-namespace:GraphSharp.Controls;assembly=GraphSharp.Controls"
              xmlns:local="clr-namespace:SocialClient.Views"
              xmlns:controls="clr-namespace:WPFExtensions.Controls;assembly=WPFExtensions"
+             xmlns:dtos="clr-namespace:Dtos;assembly=Dtos"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <!--<Grid Background="Purple">
-        <TextBlock Text="{Binding Name}"></TextBlock>
-        --><!--<controls:ZoomControl>--><!--
-            <graphsharp:GraphLayout Graph="{Binding MyGraph}"  LayoutAlgorithmType="FR"
-                                    OverlapRemovalAlgorithmType="FSA"
-                                    HighlightAlgorithmType="Simple">
-        </graphsharp:GraphLayout>
-        --><!--</controls:ZoomControl>--><!--
-    </Grid>-->
 
-    <controls:ZoomControl>
-        <graphsharp:GraphLayout x:Name="graphLayout"
-                                Graph="{Binding Path=MyGraph}"
-                                LayoutAlgorithmType="FR"
-                                OverlapRemovalAlgorithmType="FSA"
-                                HighlightAlgorithmType="Simple" />
-    </controls:ZoomControl>
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type dtos:UserNodeDto}">
+            <TextBlock FontWeight="Bold" FontSize="18">
+                <Run Text="{Binding Path=Id}" />
+                <Run Text=" " />
+                <Run Text="{Binding Path=Name}" />
+                <Run Text=" " />
+                <Run Text="{Binding Path=Surname}" />
+            </TextBlock>
+        </DataTemplate>
+
+        <Style TargetType="{x:Type graphsharp:VertexControl}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type graphsharp:VertexControl}">
+                        <Border BorderBrush="Black" 
+                                BorderThickness="1"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter Content="{TemplateBinding Vertex}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="Purple">
+        <controls:ZoomControl Mode="Original" >
+            <!--FR, ISOM-->
+            <graphsharp:GraphLayout Graph="{Binding MyGraph}"  LayoutAlgorithmType="FR"
+                                    OverlapRemovalAlgorithmType="FSA" />
+        </controls:ZoomControl>
+    </Grid>
 </UserControl>
