@@ -12,7 +12,7 @@ namespace SocialWeb.Models.Contexts
 
         public SocialContext() : base("SocialContext")
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<SocialContext, Migrations.Configuration>());
+         
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

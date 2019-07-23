@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SocialClient.ViewModels;
-
+using System.Windows.Interactivity;
 namespace SocialClient.Views
 {
     /// <summary>
@@ -25,7 +26,7 @@ namespace SocialClient.Views
 
         public UserView()
         {
-            _userViewModel = new UserViewModel();
+            _userViewModel = new UserViewModel(1);
             this.DataContext = _userViewModel;
 
             InitializeComponent();

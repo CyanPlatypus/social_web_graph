@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using SocialWeb.Models;
@@ -8,17 +9,17 @@ namespace SocialWeb.Repositories
 {
     public class UserRepository
     {
-        private readonly DbContext _dbContext;
+        private readonly SocialContext _dbContext;
         private readonly DbSet<User> _dbSet;
 
-        public UserRepository(DbContext dbContext)
+        public UserRepository(SocialContext dbContext)
         {
             _dbContext = dbContext;
-            _dbSet = _dbContext.Set<User>();
+            _dbSet = _dbContext.Users;
         }
 
-        public User Get(int id){
-            
+        public User Get(int id)
+        {
             return _dbSet
                 .Include(u => u.Gender)
                 .Include(u => u.PlaceOfBirth)

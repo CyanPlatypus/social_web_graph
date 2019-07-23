@@ -1,66 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Windows.Input;
 using Dtos;
 using SocialClient.Annotations;
+using SocialClient.Commands;
+using SocialClient.Misc;
+using SocialClient.Services;
 
 namespace SocialClient.ViewModels
 {
     public class UserViewModel: INotifyPropertyChanged
     {
-        private UserDto currentUser;
-        private int index;
+        public NotifyTaskExecution<UserDto> NotifyTaskExecution;
+        //private UserDto currentUser;
 
-        public UserDto CurrentUser
+        public UserDto CurrentUser => NotifyTaskExecution.Result;
+
+        public GetUserCommand ChangeUserCommand { get; set; }
+
+        public UserViewModel(int id)
         {
-            get => currentUser;
-            private set
+            NotifyTaskExecution = new NotifyTaskExecution<UserDto>(UserService.GetUserAsync(id));
+            NotifyTaskExecution.PropertyChanged += NotifyTaskExecution_PropertyChanged;
+            this.ChangeUserCommand = new GetUserCommand(o =>
             {
-                currentUser = value;
-                OnPropertyChanged();
-            }
+                if(o is UserInfoDto user)
+                    this.NotifyTaskExecution.SetTask(UserService.GetUserAsync(user.Id));
+            });
         }
-
-        public UserViewModel()
+        
+        private void NotifyTaskExecution_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            index = 0;
-            ChangeUser();
-        }
-
-        public void ChangeUser()
-        {
-            var names = new string[] {"Sean", "Baltimor", "Melissa"};
-            index = ++index % 3;
-            CurrentUser = new UserDto
-            {
-                Id = 1,
-                Name = names[index],
-                Surname = "Digger",
-                Patronymic = "Semyonovich",
-                Phone = "88005353535",
-                DateOfBirth = DateTime.Now,
-                Gender = "male",
-                PlaceOfBirth = "Moscow",
-                Residence = "Milan",
-                Hobbies = new List<string>(){"golf", "knotting"},
-                Friends = new List<UserInfoDto>() { new UserInfoDto
-                    {
-                        Id = 2,
-                        Name = "Helen",
-                        Surname = "Selezneva",
-                        Patronymic = "Grigorievna"
-                    },
-                    new UserInfoDto
-                    {
-                        Id = 2,
-                        Name = "Anna",
-                        Surname = "Selezneva",
-                        Patronymic = "Grigorievna"
-                    }
-                }
-            };
+            //if (e.PropertyName == nameof(NotifyTaskExecution.Result))
+                OnPropertyChanged(nameof(CurrentUser));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

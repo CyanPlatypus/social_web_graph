@@ -5,27 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SocialClient.Views"
              xmlns:viewModels="clr-namespace:SocialClient.ViewModels"
+             xmlns:ie="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              >
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock FontWeight="Bold" FontSize="14">
+        <!--<Button>Check responsiveness</Button>-->
+        <TextBlock FontWeight="Bold" FontSize="18">
             <Run Text="{Binding CurrentUser.Name}" />
             <Run Text=" " />
             <Run Text="{Binding CurrentUser.Surname}" />
             <Run Text=" " />
             <Run Text="{Binding CurrentUser.Patronymic}" />
         </TextBlock>
-        <Label>Date of birth:</Label>
+        <Label FontWeight="Bold">Date of birth:</Label>
         <TextBlock Text="{Binding CurrentUser.DateOfBirth, StringFormat=dd.MM.yyyy}"></TextBlock>
-        <Label>Gender:</Label>
+        <Label FontWeight="Bold">Gender:</Label>
         <TextBlock Text="{Binding CurrentUser.Gender}"></TextBlock>
-        <Label>Place of birth:</Label>
+        <Label FontWeight="Bold">Place of birth:</Label>
         <TextBlock Text="{Binding CurrentUser.PlaceOfBirth}"></TextBlock>
-        <Label>Place of residence:</Label>
+        <Label FontWeight="Bold">Place of residence:</Label>
         <TextBlock Text="{Binding CurrentUser.Residence}"></TextBlock>
         
-        <Label>Hobbies:</Label>
+        <Label FontWeight="Bold">Hobbies:</Label>
         <ListBox ItemsSource="{Binding CurrentUser.Hobbies}" BorderThickness="0"></ListBox>
         <!--<ItemsControl ItemsSource="{Binding CurrentUser.Hobbies}">
             <ItemsControl.ItemsPanel>
@@ -42,8 +44,8 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>-->
 
-        <Label>Friends:</Label>
-        <ListBox ItemsSource="{Binding CurrentUser.Friends}" BorderThickness="0">
+        <Label FontWeight="Bold">Friends:</Label>
+        <ListBox Name="myListBox" ItemsSource="{Binding CurrentUser.Friends}" BorderThickness="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
@@ -55,7 +57,11 @@
                     </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ie:Interaction.Triggers>
+                <ie:EventTrigger EventName="SelectionChanged">
+                    <ie:InvokeCommandAction Command="{Binding ChangeUserCommand}"  CommandParameter="{Binding ElementName=myListBox, Path=SelectedItem}"/>
+                </ie:EventTrigger>
+            </ie:Interaction.Triggers>
         </ListBox>
-
     </StackPanel>
 </UserControl>
