@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Reflection;
-using System.Web;
 using System.Web.Http;
-using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.WebApi;
 using AutoMapper;
-using SocialWeb.Models.Contexts;
-using SocialWeb.Repositories;
-using SocialWeb.Services;
-using WebSocialWeb.Mappers;
+using WebServices.Mappers;
+using WebServices.Models.Contexts;
+using WebServices.Repositories;
+using WebServices.Services;
 
-namespace SocialWeb
+namespace WebServices
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

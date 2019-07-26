@@ -1,6 +1,6 @@
-﻿namespace SocialWeb.Models
+﻿namespace WebServices.Models
 {
-    public class Area
+    public class Gender
     {
         public int Id { get; set; }
         public string Name { get; set; }

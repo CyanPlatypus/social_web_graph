@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using SocialWeb.Services;
+﻿using System.Web.Http;
+using WebServices.Services;
 
-namespace SocialWeb.Controllers
+namespace WebServices.Controllers
 {
     [RoutePrefix("api/users")]
     public class UserController : ApiController

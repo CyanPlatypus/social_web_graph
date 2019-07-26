@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace SocialWeb.Models.Contexts
+namespace WebServices.Models.Contexts
 {
     public class SocialContext: DbContext
     {

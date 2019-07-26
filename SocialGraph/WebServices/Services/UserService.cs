@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using Dtos;
-using SocialWeb.CustomExceptions;
-using SocialWeb.Repositories;
+using WebServices.CustomExceptions;
+using WebServices.Repositories;
 
-namespace SocialWeb.Services
+namespace WebServices.Services
 {
     public class UserService
     {

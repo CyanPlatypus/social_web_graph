@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SocialWeb.CustomExceptions
+namespace WebServices.CustomExceptions
 {
     public class UserNotFoundException: Exception
     {

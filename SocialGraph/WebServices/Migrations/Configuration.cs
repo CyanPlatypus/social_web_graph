@@ -1,18 +1,16 @@
-namespace SocialWeb.Migrations
-{
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+using System.Data.Entity.Migrations;
+using WebServices.Models.Contexts;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<SocialWeb.Models.Contexts.SocialContext>
+namespace WebServices.Migrations
+{
+    internal sealed class Configuration : DbMigrationsConfiguration<SocialContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(SocialWeb.Models.Contexts.SocialContext context)
+        protected override void Seed(SocialContext context)
         {
             //  This method will be called after migrating to the latest version.
 

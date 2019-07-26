@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using AutoMapper;
 using Dtos;
-using SocialWeb.Models;
+using WebServices.Models;
 
-namespace WebSocialWeb.Mappers
+namespace WebServices.Mappers
 {
     public class Profiles: Profile
     {

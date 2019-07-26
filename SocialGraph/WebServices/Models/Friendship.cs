@@ -1,4 +1,4 @@
-﻿namespace SocialWeb.Models
+﻿namespace WebServices.Models
 {
     public class Friendship
     {

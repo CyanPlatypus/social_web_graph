@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SocialWeb.Models
+namespace WebServices.Models
 {
     public class User
     {

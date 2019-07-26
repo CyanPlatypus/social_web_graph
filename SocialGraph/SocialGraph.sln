@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialWeb", "SocialWeb\SocialWeb.csproj", "{8452B2BD-47A6-4768-B115-5BA649645197}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServices", "WebServices\WebServices.csproj", "{8452B2BD-47A6-4768-B115-5BA649645197}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtos", "..\Dtos\Dtos\Dtos.csproj", "{8718A55D-FDFB-49B2-B3B9-0557D22CA10A}"
 EndProject
