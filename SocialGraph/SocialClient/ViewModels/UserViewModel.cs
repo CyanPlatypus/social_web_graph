@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Windows.Input;
-using Dtos;
+using Data.Dtos;
 using SocialClient.Annotations;
 using SocialClient.Commands;
 using SocialClient.Misc;
@@ -19,7 +19,7 @@ namespace SocialClient.ViewModels
 
         public UserDto CurrentUser => NotifyTaskExecution.Result;
 
-        public RelayCommand ChangeUserCommand { get; protected set; }
+        public RelayCommand ChangeUserCommand { get; set; }
 
         public UserViewModel(int id)
         {

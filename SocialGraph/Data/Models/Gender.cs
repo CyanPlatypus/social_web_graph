@@ -1,4 +1,4 @@
-﻿namespace WebServices.Models
+﻿namespace Data.Models
 {
     public class Gender
     {

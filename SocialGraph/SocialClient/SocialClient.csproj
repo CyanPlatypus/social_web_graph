@@ -157,11 +157,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Dtos\Dtos\Dtos.csproj">
-      <Project>{8718A55D-FDFB-49B2-B3B9-0557D22CA10A}</Project>
-      <Name>Dtos</Name>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{7ae265c0-12eb-4be2-a501-944b2a5e3f9e}</Project>
+      <Name>Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,6 @@
-﻿namespace WebServices.Models
+﻿namespace Data.Models
 {
-    public class Area
+    public class Hobby
     {
         public int Id { get; set; }
         public string Name { get; set; }

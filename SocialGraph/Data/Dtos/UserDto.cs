@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Dtos
+namespace Data.Dtos
 {
     public class UserDto
     {

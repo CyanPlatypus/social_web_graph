@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace WebServices.Models.Contexts
+namespace Data.Models.Contexts
 {
     public class SocialContext: DbContext
     {
@@ -12,7 +12,7 @@ namespace WebServices.Models.Contexts
 
         public SocialContext() : base("SocialContext")
         {
-         
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Data.Models.Contexts.SocialContext, Data.Migrations.Configuration>(useSuppliedContext: true));
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

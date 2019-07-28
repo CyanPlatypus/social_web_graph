@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Dtos;
+using Data.Dtos;
 
 namespace SocialClient.Services
 {
@@ -13,13 +13,14 @@ namespace SocialClient.Services
         private const string domain = @"http://localhost:55050/api/users";
 
         //todo: should it be static or using will do better?
-        private static readonly HttpClient _client = new HttpClient();
+        //private static readonly HttpClient client = new HttpClient();
 
         public static async Task<UserDto> GetUserAsync(int id)
         {
             UserDto user = null;
             
-            using (var response = await _client.GetAsync($"{domain}/{id}").ConfigureAwait(false))
+            using( var client = new HttpClient())
+            using (var response = await client.GetAsync($"{domain}/{id}").ConfigureAwait(false))
             {
                 if (response.IsSuccessStatusCode)
                     user = await response.Content.ReadAsAsync<UserDto>();
@@ -31,10 +32,11 @@ namespace SocialClient.Services
         {
             List<UserNodeDto> users = null;
 
-            using (var responce = await _client.GetAsync(domain).ConfigureAwait(false))
+            using (var client = new HttpClient())
+            using (var response = await client.GetAsync(domain).ConfigureAwait(false))
             {
-                if (responce.IsSuccessStatusCode)
-                    users = await responce.Content.ReadAsAsync<List<UserNodeDto>>();
+                if (response.IsSuccessStatusCode)
+                    users = await response.Content.ReadAsAsync<List<UserNodeDto>>();
                 return users;
             }
         }

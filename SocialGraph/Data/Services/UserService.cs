@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using AutoMapper;
-using Dtos;
-using WebServices.CustomExceptions;
-using WebServices.Repositories;
+using Data.CustomExceptions;
+using Data.Dtos;
+using Data.Models;
+using Data.Repositories;
 
-namespace WebServices.Services
+namespace Data.Services
 {
     public class UserService
     {

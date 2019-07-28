@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using WebServices.Models;
-using WebServices.Models.Contexts;
+using Data.Models;
+using Data.Models.Contexts;
 
-namespace WebServices.Repositories
+namespace Data.Repositories
 {
     public class UserRepository
     {

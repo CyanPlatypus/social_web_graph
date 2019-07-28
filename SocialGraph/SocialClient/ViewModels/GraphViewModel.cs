@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using Dtos;
+using Data.Dtos;
 using QuickGraph;
 using SocialClient.Annotations;
 using SocialClient.Commands;

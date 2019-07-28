@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using AutoMapper;
-using Dtos;
-using WebServices.Models;
+﻿using AutoMapper;
+using Data.Dtos;
+using Data.Models;
+using System.Linq;
 
-namespace WebServices.Mappers
+namespace Data.Mappers
 {
     public class Profiles: Profile
     {

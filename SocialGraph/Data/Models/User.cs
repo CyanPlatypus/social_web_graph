@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebServices.Models
+namespace Data.Models
 {
     public class User
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebServices.CustomExceptions
+namespace Data.CustomExceptions
 {
     public class UserNotFoundException: Exception
     {

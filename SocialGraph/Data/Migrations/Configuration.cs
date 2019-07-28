@@ -1,7 +1,7 @@
 using System.Data.Entity.Migrations;
-using WebServices.Models.Contexts;
+using Data.Models.Contexts;
 
-namespace WebServices.Migrations
+namespace Data.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<SocialContext>
     {
