@@ -20,9 +20,9 @@ namespace SocialClient.Views
     /// </summary>
     public partial class UserWindow : Window
     {
-        public UserWindow(UserViewModel userViewModel)
+        public UserWindow(UserViewModel viewModel)
         {
-            this.DataContext = userViewModel;
+            this.DataContext = viewModel;
             InitializeComponent();
         }
     }

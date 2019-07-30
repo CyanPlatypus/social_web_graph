@@ -5,12 +5,11 @@ using Data.Dtos;
 
 namespace SocialClient.Services
 {
-    //todo make not static
     public class UserService
     {
         private const string domain = @"http://localhost:55050/api/users";
         
-        public static async Task<UserDto> GetUserAsync(int id)
+        public async Task<UserDto> GetUserAsync(int id)
         {
             UserDto user = null;
             
@@ -23,7 +22,7 @@ namespace SocialClient.Services
             }
         }
 
-        public static async Task<List<UserNodeDto>> GetUsersAsync()
+        public async Task<List<UserNodeDto>> GetUsersAsync()
         {
             List<UserNodeDto> users = null;
 

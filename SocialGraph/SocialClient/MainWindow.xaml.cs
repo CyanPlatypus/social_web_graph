@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using SocialClient.Views;
 
 namespace SocialClient
 {
@@ -7,9 +8,10 @@ namespace SocialClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(GraphView graphView)
         {
             InitializeComponent();
+            mainGrid.Children.Add(graphView);
         }
     }
 }

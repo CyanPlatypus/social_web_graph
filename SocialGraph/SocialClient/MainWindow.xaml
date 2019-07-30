@@ -7,8 +7,8 @@
         xmlns:views="clr-namespace:SocialClient.Views"
         mc:Ignorable="d"
         Title="Graph" Height="450" Width="800">
-    <Grid>
+    <Grid Name="mainGrid">
         <!--<views:UserView></views:UserView>-->
-        <views:GraphView></views:GraphView>
+        <!--<views:GraphView></views:GraphView>-->
     </Grid>
 </Window>
