@@ -17,8 +17,11 @@ namespace SocialClient.ViewModels
 
         public RelayCommand ShowUserInfo { get; protected set; }
 
-        private BidirectionalGraph<object, IEdge<object>> _myGraph;
+        private readonly UserService _userService;
+        private readonly WindowService _windowService;
 
+        private BidirectionalGraph<object, IEdge<object>> _myGraph;
+        
         public BidirectionalGraph<object, IEdge<object>> MyGraph
         {
             get => _myGraph;
@@ -29,21 +32,23 @@ namespace SocialClient.ViewModels
             }
         }
 
-        public GraphViewModel()
+        public GraphViewModel(UserService userService, WindowService windowService)
         {
+            _userService = userService;
+            _windowService = windowService;
             NotifyTaskExecution = new NotifyTaskExecution<List<UserNodeDto>>();
             NotifyTaskExecution.PropertyChanged += NotifyTaskExecution_PropertyChanged;
             ShowUserInfo = new RelayCommand(obj =>
             {
                 if (obj is UserNodeDto un)
-                    WindowService.ShowUser(un.Id);
+                    _windowService.ShowUser(un.Id);
             });
             UpdateGraph();
         }
 
         protected void UpdateGraph()
         {
-            NotifyTaskExecution.StartTask(UserService.GetUsersAsync());
+            NotifyTaskExecution.StartTask(_userService.GetUsersAsync());
         }
 
         private void NotifyTaskExecution_PropertyChanged(object sender, PropertyChangedEventArgs e)

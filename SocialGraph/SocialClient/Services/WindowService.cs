@@ -3,12 +3,31 @@ using SocialClient.Views;
 
 namespace SocialClient.Services
 {
-    //todo make not static
     public class WindowService
     {
-        public static void ShowUser(int id)
+        private readonly IUserViewModelFactory _userViewModelFactory;
+        private readonly IUserWindowFactory _userWindowFactory;
+
+        public WindowService(IUserViewModelFactory userViewModelFactory,
+            IUserWindowFactory userWindowFactory)
         {
-            new UserWindow(new UserViewModel(id)).Show();
+            _userViewModelFactory = userViewModelFactory;
+            _userWindowFactory = userWindowFactory;
         }
+
+        public void ShowUser(int id)
+        {
+            _userWindowFactory.CreateUserWindow(_userViewModelFactory.CreateUserViewModel(id)).Show();
+        }
+    }
+
+    public interface IUserViewModelFactory
+    {
+        UserViewModel CreateUserViewModel(int id);
+    }
+
+    public interface IUserWindowFactory
+    {
+        UserWindow CreateUserWindow(UserViewModel viewModel);
     }
 }

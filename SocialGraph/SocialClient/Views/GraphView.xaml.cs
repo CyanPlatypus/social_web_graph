@@ -8,9 +8,9 @@ namespace SocialClient.Views
     /// </summary>
     public partial class GraphView : UserControl
     {
-        public GraphView()
+        public GraphView(GraphViewModel viewModel)
         {
-            this.DataContext = new GraphViewModel();
+            this.DataContext = viewModel;
             InitializeComponent();
         }
     }
