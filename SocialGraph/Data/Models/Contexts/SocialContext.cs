@@ -12,7 +12,7 @@ namespace Data.Models.Contexts
 
         public SocialContext() : base("SocialContext")
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<Data.Models.Contexts.SocialContext, Data.Migrations.Configuration>(useSuppliedContext: true));
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Data.Models.Contexts.SocialContext, Data.Migrations.Configuration>(useSuppliedContext: true));
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
