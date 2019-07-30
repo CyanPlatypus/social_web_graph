@@ -1,5 +1,5 @@
-﻿using SocialClient.Views;
-using SocialClient.Windows;
+﻿using SocialClient.ViewModels;
+using SocialClient.Views;
 
 namespace SocialClient.Services
 {
@@ -8,7 +8,7 @@ namespace SocialClient.Services
     {
         public static void ShowUser(int id)
         {
-            new UserWindow(new UserView(id)).Show();
+            new UserWindow(new UserViewModel(id)).Show();
         }
     }
 }

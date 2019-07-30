@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using Data.Dtos;
 
@@ -11,10 +9,7 @@ namespace SocialClient.Services
     public class UserService
     {
         private const string domain = @"http://localhost:55050/api/users";
-
-        //todo: should it be static or using will do better?
-        //private static readonly HttpClient client = new HttpClient();
-
+        
         public static async Task<UserDto> GetUserAsync(int id)
         {
             UserDto user = null;

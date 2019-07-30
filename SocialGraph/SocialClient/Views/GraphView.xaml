@@ -16,11 +16,11 @@
                 <TextBlock FontWeight="Bold" FontSize="18">
                     <Run Text="{Binding Path=Id}" />
                     <Run Text=" " />
-                    <Run Text="{Binding Path=Name}" />
-                    <Run Text=" " />
                     <Run Text="{Binding Path=Surname}" />
+                    <Run Text=" " />
+                    <Run Text="{Binding Path=Name}" />
                 </TextBlock>
-                <Button Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type graphsharp:GraphLayout}}, Path=DataContext.ShowUserInfo}" CommandParameter="{Binding}" >
+                <Button Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.ShowUserInfo}" CommandParameter="{Binding}" >
                 Info
                 </Button>
             </StackPanel>
@@ -47,11 +47,13 @@
     <Grid>
         <Label Content="Loading..." Visibility="{Binding NotifyTaskExecution.IsRunning, 
             Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        
         <controls:ZoomControl Visibility="{Binding NotifyTaskExecution.IsCompletedSuccessfully, 
             Converter={StaticResource BooleanToVisibilityConverter}}">
             <!--FR, ISOM-->
             <graphsharp:GraphLayout Graph="{Binding MyGraph}"  LayoutAlgorithmType="FR"
-                                    OverlapRemovalAlgorithmType="FSA" />
+                                    OverlapRemovalAlgorithmType="FSA" >
+            </graphsharp:GraphLayout>
         </controls:ZoomControl>
     </Grid>
 </UserControl>

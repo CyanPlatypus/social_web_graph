@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using Data.CustomExceptions;
 using Data.Dtos;
-using Data.Models;
 using Data.Repositories;
 
 namespace Data.Services
@@ -15,9 +11,7 @@ namespace Data.Services
         private readonly UserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public UserService(UserRepository userRepository
-            , IMapper mapper
-            )
+        public UserService(UserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
             _mapper = mapper;

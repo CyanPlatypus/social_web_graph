@@ -11,20 +11,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SocialClient.ViewModels;
 
-namespace SocialClient.Windows
+namespace SocialClient.Views
 {
     /// <summary>
     /// Interaction logic for UserWindow.xaml
     /// </summary>
     public partial class UserWindow : Window
     {
-        public UserWindow(UserControl userControl)
+        public UserWindow(UserViewModel userViewModel)
         {
+            this.DataContext = userViewModel;
             InitializeComponent();
-            mainGrid.Children.Add(userControl);
         }
-
-
     }
 }
