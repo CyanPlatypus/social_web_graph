@@ -1,0 +1,79 @@
+﻿<Window x:Class="SocialClient.Views.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SocialClient.Views"
+        mc:Ignorable="d"
+        Title="User" Height="600" Width="400">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+    </Window.Resources>
+
+    <Grid>
+        <Label Content="Loading..." Visibility="{Binding NotifyTaskExecution.IsRunning, 
+            Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <ScrollViewer Visibility="{Binding NotifyTaskExecution.IsCompletedSuccessfully, 
+            Converter={StaticResource BooleanToVisibilityConverter}}">
+            <StackPanel HorizontalAlignment="Center" >
+                <TextBlock FontWeight="Bold" FontSize="18">
+                    <Run Text="{Binding CurrentUser.Surname}" />
+                    <Run Text=" " />
+                    <Run Text="{Binding CurrentUser.Name}" />
+                    <Run Text=" " />
+                    <Run Text="{Binding CurrentUser.Patronymic}" />
+                </TextBlock>
+                <Label FontWeight="Bold">Date of birth:</Label>
+                <TextBlock Text="{Binding CurrentUser.DateOfBirth, StringFormat=dd.MM.yyyy}"></TextBlock>
+                <Label FontWeight="Bold">Gender:</Label>
+                <TextBlock Text="{Binding CurrentUser.Gender}"></TextBlock>
+                <Label FontWeight="Bold">Place of birth:</Label>
+                <TextBlock Text="{Binding CurrentUser.PlaceOfBirth}"></TextBlock>
+                <Label FontWeight="Bold">Place of residence:</Label>
+                <TextBlock Text="{Binding CurrentUser.Residence}"></TextBlock>
+
+                <Label FontWeight="Bold">Hobbies:</Label>
+                <ListBox ItemsSource="{Binding CurrentUser.Hobbies}" BorderThickness="0"></ListBox>
+                <!--<ItemsControl ItemsSource="{Binding CurrentUser.Hobbies}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>-->
+
+                <Label FontWeight="Bold">Friends:</Label>
+
+                <ListBox Name="myListBox" ItemsSource="{Binding CurrentUser.Friends}"  BorderThickness="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                    <Run Text="{Binding Path=Surname}" />
+                                    <Run Text=" " />
+                                    <Run Text="{Binding Path=Name}" />
+                                    <Run Text=" " />
+                                    <Run Text="{Binding Path=Patronymic}" />
+                                </TextBlock>
+                                <Button Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, 
+                                    Path=DataContext.ChangeUserCommand}" CommandParameter="{Binding}" >Info</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <!--<ie:Interaction.Triggers>
+                        <ie:EventTrigger EventName="SelectionChanged">
+                            <ie:InvokeCommandAction Command="{Binding ChangeUserCommand}"  CommandParameter="{Binding ElementName=myListBox, Path=SelectedItem}"/>
+                        </ie:EventTrigger>
+                    </ie:Interaction.Triggers>-->
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Window>
