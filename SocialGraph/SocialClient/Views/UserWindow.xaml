@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SocialClient.Views"
         mc:Ignorable="d"
-        Title="User" Height="800" Width="400">
+        Title="User" Height="800" Width="400"
+        MinHeight="300" MinWidth="300">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
     </Window.Resources>
@@ -34,23 +34,8 @@
 
                 <Label FontWeight="Bold">Hobbies:</Label>
                 <ListBox ItemsSource="{Binding CurrentUser.Hobbies}" BorderThickness="0"></ListBox>
-                <!--<ItemsControl ItemsSource="{Binding CurrentUser.Hobbies}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>-->
 
                 <Label FontWeight="Bold">Friends:</Label>
-
                 <ListBox Name="myListBox" ItemsSource="{Binding CurrentUser.Friends}"  BorderThickness="0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -67,11 +52,6 @@
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                    <!--<ie:Interaction.Triggers>
-                        <ie:EventTrigger EventName="SelectionChanged">
-                            <ie:InvokeCommandAction Command="{Binding ChangeUserCommand}"  CommandParameter="{Binding ElementName=myListBox, Path=SelectedItem}"/>
-                        </ie:EventTrigger>
-                    </ie:Interaction.Triggers>-->
                 </ListBox>
             </StackPanel>
         </ScrollViewer>

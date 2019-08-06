@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:graphsharp="clr-namespace:GraphSharp.Controls;assembly=GraphSharp.Controls"
-             xmlns:local="clr-namespace:SocialClient.Views"
              xmlns:controls="clr-namespace:WPFExtensions.Controls;assembly=WPFExtensions"
              xmlns:dtos="clr-namespace:Data.Dtos;assembly=Data"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             MinHeight="300" MinWidth="300">
 
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type dtos:UserNodeDto}">
@@ -50,7 +50,7 @@
         
         <controls:ZoomControl Visibility="{Binding NotifyTaskExecution.IsCompletedSuccessfully, 
             Converter={StaticResource BooleanToVisibilityConverter}}">
-            <!--FR, ISOM-->
+            
             <graphsharp:GraphLayout Graph="{Binding MyGraph}"  LayoutAlgorithmType="FR"
                                     OverlapRemovalAlgorithmType="FSA" >
             </graphsharp:GraphLayout>

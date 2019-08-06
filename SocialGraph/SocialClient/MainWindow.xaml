@@ -3,12 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SocialClient"
-        xmlns:views="clr-namespace:SocialClient.Views"
         mc:Ignorable="d"
-        Title="Graph" Height="450" Width="800">
+        Title="Graph" Height="450" Width="800"
+        MinHeight="300" MinWidth="300">
     <Grid Name="mainGrid">
-        <!--<views:UserView></views:UserView>-->
-        <!--<views:GraphView></views:GraphView>-->
     </Grid>
 </Window>
