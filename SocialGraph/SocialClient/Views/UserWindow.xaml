@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="User" Height="800" Width="400"
+        Title="User" Height="650" Width="400"
         MinHeight="300" MinWidth="300">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
@@ -33,13 +33,13 @@
                 <TextBlock Text="{Binding CurrentUser.Residence}"></TextBlock>
 
                 <Label FontWeight="Bold">Hobbies:</Label>
-                <ListBox ItemsSource="{Binding CurrentUser.Hobbies}" BorderThickness="0"></ListBox>
+                <ItemsControl ItemsSource="{Binding CurrentUser.Hobbies}" BorderThickness="0"></ItemsControl>
 
                 <Label FontWeight="Bold">Friends:</Label>
-                <ListBox Name="myListBox" ItemsSource="{Binding CurrentUser.Friends}"  BorderThickness="0">
-                    <ListBox.ItemTemplate>
+                <ItemsControl Name="myListBox" ItemsSource="{Binding CurrentUser.Friends}"  BorderThickness="0">
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Margin="1">
                                 <TextBlock>
                                     <Run Text="{Binding Path=Surname}" />
                                     <Run Text=" " />
@@ -51,8 +51,8 @@
                                     Path=DataContext.ChangeUserCommand}" CommandParameter="{Binding}" >Info</Button>
                             </StackPanel>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </StackPanel>
         </ScrollViewer>
     </Grid>
